@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+    <nav> 
+     <div class="logo"> BookStudio </div>
+     <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="checkout.html">Cart (<span id="cart-count">0</span>)</a></li>
+     </ul>
+    </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Find Your Next Adventure</h1>
+        <p>Buy and sell used books from readers around the world.</p>
+    </section>
+
+    <main class="marketplace">
+        <div class="Classic books">
+            <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTjKXN6Ud0Ftnr702ww8t2keK3be7BcGrDCza5v8pTDPgiz4gSI16wk1UnHx0UMttQ_xfTcXnQSUmEa7kOPG8s3Pxtf1PjO">
+            <h3>A Knight of The Seven Kingdoms</h3>
+            <p class="author">F. Scott Fitzgerald</p>
+            <p class="price">$17.00</p>
+            <button>Add to Cart</button>
+        </div>
+
+<div class="book-card">
+    <a href="book-details.html?title=FRANKENSTEIN&price=$19.50&image=https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRgUePZZO8McXNwVBgWgnicq_1MRVDq-14Br9ar8_3HxA_ti3rO5kn7H4qvieIaFRgd9xtN" style="text-decoration: none; color: inherit;">
+        
+        <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQ6QoXlUr0uNsEz9D6W-01H7PHQJT24KKonjPjEAPfv_Q3mxL5JEa-Ivw1mI6e3KsHJcel7FFZ7amEw3H2xM99PgM7gB8sneDd78kp4YcK-">
+        
+        <h3>FRANKENSTEIN</h3>
+     </a>
+    <p class="author">MARY SHELLEY</p>
+    <p class="price">$19.50</p>
+    <button class="add-btn">Add to Cart</button>
+</div>
+
+        <div class="book-card">
+            <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSn9w2bISf0m4LM2G5mV9y_h4V-2lD6RrSqYGn5E3_rLOEb5tUnsl8Bm8xAaOhtPyYFP23ytUF0ItA_F6mkORVC_xx68-p_">
+            <h3>THE BOOK OF DEMONS</h3>
+            <p class="author">Nanditha Krishna </p>
+            <p class="price">$12.00</p>
+            <button>Add to Cart</button>
+        </div>
+    </main>
+    <script>
+    let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+    const cartCountElement = document.getElementById('cart-count');
+    cartCountElement.innerText = cart.length;
+
+    const addButtons = document.querySelectorAll('.book-card button');
+
+    addButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const card = button.parentElement;
+            const title = card.querySelector('h3').innerText;
+            const price = card.querySelector('.price').innerText;
+
+            cart.push({ title, price });
+            
+            // Save to browser memory
+            localStorage.setItem('myCart', JSON.stringify(cart));
+            cartCountElement.innerText = cart.length;
+
+            alert(title + " added!");
+        });
+    });
+</script>
+</body>
+</html> 
